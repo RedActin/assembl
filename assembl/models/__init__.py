@@ -27,7 +27,7 @@ class DiscussionBoundBase(Base):
         if not connection:
             # WARNING: invalidate has to be called within an active transaction.
             # This should be the case in general, no need to add a transaction manager.
-            connection = self.db().connection()
+            connection = self.db.connection()
         if 'cdict' not in connection.info:
             connection.info['cdict'] = {}
         connection.info['cdict'][self.uri()] = (
@@ -127,12 +127,8 @@ from .mail import (
     MailingList,
 )
 from .idea import (
-    Argument,
-    Criterion,
     Idea,
     IdeaLink,
-    Issue,
-    Position,
     RootIdea,
 )
 from .idea_content_link import (

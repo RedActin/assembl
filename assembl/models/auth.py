@@ -956,7 +956,8 @@ class Role(Base):
     name = Column(String(20), nullable=False)
 
     @classmethod
-    def get_role(cls, session, name):
+    def get_role(cls, name, session=None):
+        session = session or cls.default_db
         return session.query(cls).filter_by(name=name).first()
 
 
@@ -1051,7 +1052,6 @@ class LocalUserRole(DiscussionBoundBase):
     def _do_update_from_json(
             self, json, parse_def, aliases, ctx, permissions,
             user_id, duplicate_error=True):
-        # TODO: Verify uniqueness
         json_user_id = json.get('user', None)
         if json_user_id is None:
             json_user_id = user_id
@@ -1081,7 +1081,9 @@ class LocalUserRole(DiscussionBoundBase):
         else:
             if not self.discussion_id:
                 raise HTTPBadRequest()
-        return self
+        return self.handle_duplication(
+            json, parse_def, aliases, ctx, permissions, user_id,
+            duplicate_error)
 
     def is_owner(self, user_id):
         return self.user_id == user_id

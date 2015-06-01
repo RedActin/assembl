@@ -219,7 +219,7 @@ class NotificationSubscription(DiscussionBoundBase):
         override this with a more optimal implementation
         """
         applicable_subscriptions = []
-        subscriptionsQuery = cls.db.query(cls)
+        subscriptionsQuery = cls.default_db.query(cls)
         subscriptionsQuery = subscriptionsQuery.filter(cls.status==NotificationSubscriptionStatus.ACTIVE);
         subscriptionsQuery = subscriptionsQuery.filter(cls.discussion_id==discussion_id);
         if user:
@@ -293,10 +293,9 @@ class NotificationSubscription(DiscussionBoundBase):
             if status != self.status:
                 self.status = status
                 self.last_status_change_date = datetime.utcnow()
-        duplicate = self.find_duplicate()
-        if duplicate is not None:
-            raise HTTPBadRequest("Duplicate of <%s> created" % (duplicate.uri()))
-        return self
+        return self.handle_duplication(
+                json, parse_def, aliases, ctx, permissions, user_id,
+                duplicate_error)
 
     def unique_query(self):
         # documented in lib/sqla
@@ -610,7 +609,6 @@ class NotificationSubscriptionFollowAllMessages(NotificationSubscriptionGlobal):
 
     def process(self, discussion_id, verb, objectInstance, otherApplicableSubscriptions):
         assert self.wouldCreateNotification(discussion_id, verb, objectInstance)
-        from sqlalchemy import inspect
         from ..tasks.notify import notify
         notification = NotificationOnPostCreated(
             post_id = objectInstance.id,

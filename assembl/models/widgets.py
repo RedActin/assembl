@@ -267,7 +267,7 @@ class BaseIdeaDescendantsCollection(AbstractCollectionDefinition):
         # using base_idea_id() is cheating, but a proper join fails.
         descendants_subq = self.descendants.bindparams(
             base_idea_id=parent_instance.base_idea_id()).alias()
-        query = Widget.db.query(descendant).filter(
+        query = instance.db.query(descendant).filter(
             descendant.id.in_(descendants_subq)).join(
             widget, widget.id == parent_instance.id)
         return query.count() > 0
@@ -882,7 +882,7 @@ MultiCriterionVotingWidget.criteria_links = relationship(
 Idea.has_criterion_links = relationship(VotingCriterionWidgetLink)
 
 MultiCriterionVotingWidget.criteria = relationship(
-    Idea,  # Criterion
+    Idea,
     viewonly=True, secondary=VotingCriterionWidgetLink.__table__,
     primaryjoin=MultiCriterionVotingWidget.idea_links.of_type(VotingCriterionWidgetLink),
     secondaryjoin=VotingCriterionWidgetLink.idea,
