@@ -2,7 +2,7 @@
 
 var Marionette = require('../../shims/marionette.js'),
     $ = require('../../shims/jquery.js'),
-    emailAccounts = require('../../models/emailAccounts.js'),
+    Accounts = require('../../models/accounts.js'),
     Ctx = require('../../common/context.js'),
     userProfile = require('../../models/userProfile.js'),
     i18n = require('../../utils/i18n.js');
@@ -141,7 +141,7 @@ var account = Marionette.LayoutView.extend({
       'addEmail': '.js_addEmail'
     },
     initialize: function(){
-        this.emailCollection = new emailAccounts.Collection();
+        this.emailCollection = new Accounts.Collection();
         this.userAcount = new userProfile.Model();
     },
     events: {
@@ -171,7 +171,7 @@ var account = Marionette.LayoutView.extend({
 
         if(email && emailRegex.test(email)){
 
-            var emailModel = new emailAccounts.Model({
+            var emailModel = new Accounts.Model({
                 email: email,
                 '@type': 'EmailAccount'
             });

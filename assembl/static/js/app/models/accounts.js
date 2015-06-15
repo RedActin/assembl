@@ -3,7 +3,7 @@
 var Base = require('./base.js'),
     Ctx = require('../common/context.js');
 
-var emailAccount = Base.Model.extend({
+var Account = Base.Model.extend({
     urlRoot: '/data/User/'+ Ctx.getCurrentUserId() +'/accounts',
     defaults: {
       //E-mail account specifics
@@ -31,12 +31,12 @@ var emailAccount = Base.Model.extend({
 
 });
 
-var emailAccounts = Base.Collection.extend({
+var Accounts = Base.Collection.extend({
     url: '/data/User/'+ Ctx.getCurrentUserId() +'/accounts',
-    model: emailAccount
+    model: Account
 });
 
 module.exports = {
-    Model: emailAccount,
-    Collection: emailAccounts
+    Model: Account,
+    Collection: Accounts
 };
