@@ -1,14 +1,14 @@
 """vote_spec
 
 Revision ID: 9565c056759
-Revises: 163294913218
+Revises: 5a410de37088
 Create Date: 2015-06-16 16:13:38.479667
 
 """
 
 # revision identifiers, used by Alembic.
 revision = '9565c056759'
-down_revision = '163294913218'
+down_revision = '5a410de37088'
 
 from alembic import context, op
 import sqlalchemy as sa
