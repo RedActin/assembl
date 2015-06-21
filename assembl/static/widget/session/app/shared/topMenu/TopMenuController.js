@@ -10,7 +10,7 @@ TopMenuModule.controller('TopMenuController', [
 
         $scope.urlLink = $scope.$parent.$state.params.config;
 
-        var id = $scope.urlLink.split('/')[1],
+        var id = decodeURIComponent($scope.urlLink).split('/')[1],
             widget = WidgetService.get({id: id}).$promise;
 
         widget.then(function(w){
