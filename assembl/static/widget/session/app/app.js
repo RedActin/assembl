@@ -13,8 +13,8 @@ var SessionApp = angular.module('appSession', [
     'mgcrea.ngStrap.datepicker']);
 
 
-SessionApp.run(['$rootScope', '$state', '$stateParams', 'IdeaService',
-    function($rootScope, $state, $stateParams, IdeaService) {
+SessionApp.run(['$rootScope', '$state', '$stateParams',
+    function($rootScope, $state, $stateParams) {
 
         var locale = window.navigator.userLanguage || window.navigator.language;
         moment.locale(locale);

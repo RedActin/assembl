@@ -8,9 +8,9 @@
 </div>
 
 <div class="commentToSubIdea">
-    <span class="showCommentSubIdea" ng-show="comments.length > 0" ng-click="showSubComment = !showSubComment">{{'comments' | translate}}</span>
+    <!--<span class="showCommentSubIdea" ng-show="comments.length > 0">{{'comments' | translate}}</span>-->
 
-    <div class="media media-comment" ng-show="showSubComment" ng-if="comments.length > 0" ng-repeat="com in comments">
+    <div class="media media-comment" ng-if="comments.length > 0" ng-repeat="com in comments">
         <a class="pull-left" href="#">
             <img class="media-object" alt="20x20" ng-src="{{com.avatar}}" style="width: 20px; height: 20px;">
         </a>
