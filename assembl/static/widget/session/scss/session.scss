@@ -10,16 +10,15 @@
     overflow-y: auto;
     .thumbnail{
       border:none;
+      background: transparent;
     }
     .sub-comment {
-      //border: 1px solid #CCCCCC;
       margin-right: 5px;
       .text-comment {
-        height: 24px;
-        border-radius: 0;
+        border-radius: 3px;
         resize : none;
         overflow-y: hidden;
-        width: 96%;
+        width: 100%;
         border: none;
         vertical-align: top;
         &:focus {
@@ -68,7 +67,7 @@
       }
       .commentToSubIdea {
         .media-comment {
-          border-bottom: 1px solid #ffffff;
+          //border-bottom: 1px solid #ffffff;
         }
         .showCommentSubIdea {
           color:#c7c2dd;
@@ -101,7 +100,18 @@
       margin-top: 0px;
     }
 
+    .user-comment{
+        background-color: #ebeaea;
+        border-radius: 4px;
+        padding: 5px;
+    }
+
+    .time{
+       font-size: 12px;
+    }
+
   }
+
   .session-cards{
     width: auto;
     font-size: 12px;

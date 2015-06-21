@@ -65,7 +65,7 @@ HomeModule.controller('HomeController', [
 
                 });
 
-                $scope.ideas = ideas.reverse();
+                $scope.ideas = ideas;
             });
         }
 
