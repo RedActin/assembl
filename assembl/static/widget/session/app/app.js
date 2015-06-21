@@ -16,6 +16,9 @@ var SessionApp = angular.module('appSession', [
 SessionApp.run(['$rootScope', '$state', '$stateParams', 'IdeaService',
     function($rootScope, $state, $stateParams, IdeaService) {
 
+        var locale = window.navigator.userLanguage || window.navigator.language;
+        moment.locale(locale);
+
         // Make state information available to $rootScope, and thus $scope in our controllers
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;

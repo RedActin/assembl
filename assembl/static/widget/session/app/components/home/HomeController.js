@@ -46,7 +46,7 @@ HomeModule.controller('HomeController', [
                 angular.forEach(response.data, function (item) {
                     if (item.widget_add_post_endpoint) {
                         item.widget_add_post_endpoint = UtilsService.getURL(_.values(item.widget_add_post_endpoint));
-                        item.creationDate = moment(item.creationDate).fromNow();
+                        item.creationDate = moment(new Date(item.creationDate)).fromNow();
                         ideas.push(item);
                     }
                 });
