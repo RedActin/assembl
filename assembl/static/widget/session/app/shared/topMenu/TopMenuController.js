@@ -25,10 +25,9 @@ TopMenuModule.controller('TopMenuController', [
 
             $scope.visibleMenu = false;
 
-            if(_.contains( permissions[$scope.discussion], 'admin_discussio')){
+            if(_.contains( permissions[$scope.discussion], 'admin_discussion')){
                 $scope.visibleMenu = true;
             }
-
         });
 
     $scope.urlLink = $scope.$parent.$state.params.config;
